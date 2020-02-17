@@ -7,6 +7,7 @@ import TimeRemaining from "../components/TimeRemaining";
 
 export default function() {
   const [text, setText] = useState("");
+  const [wordCount, setWordCount] = useState(0);
   const { running, timeRemaining, startTimer, stopTimer, reset } = useTimer(2);
 
   return (
@@ -14,7 +15,12 @@ export default function() {
       <TypingArea running={running} text={text} setText={setText} />
       <TimerButtons toggleTimer={toggleTimer} running={running} reset={reset} />
       <TimeRemaining timeRemaining={timeRemaining} />
-      <WordCount running={running} text={text} />
+      <WordCount
+        running={running}
+        text={text}
+        wordCount={wordCount}
+        setWordCount={setWordCount}
+      />
     </>
   );
 

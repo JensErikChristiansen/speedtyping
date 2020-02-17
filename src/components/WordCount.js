@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 
-export default function({ running, text }) {
-  return <h2>Word Count: {!running && calculate()}</h2>;
+export default function({ running, text, wordCount, setWordCount }) {
+  useEffect(() => {
+    if (!running) {
+      const wordCount = text !== "" ? text.trim().split(" ").length : 0;
+      setWordCount(wordCount);
+    }
+  }, [running, text, wordCount, setWordCount]);
 
-  function calculate() {
-    return text !== "" ? text.trim().split(" ").length : 0;
-  }
+  return <h2>Word Count: {!running && wordCount}</h2>;
 }

@@ -2,7 +2,7 @@ import React from "react";
 
 import "./App.css";
 import Header from "./components/Header";
-import TypingTest from "./pages/TypingTest";
+import Game from "./pages/Game";
 import { Switch, Route } from "react-router-dom";
 import HighScore from "./pages/HighScore";
 
@@ -13,7 +13,7 @@ function App() {
 
       <Switch>
         <Route exact path="/">
-          <TypingTest />
+          <Game />
         </Route>
         <Route path="/scores">
           <HighScore />
