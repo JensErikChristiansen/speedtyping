@@ -6,9 +6,9 @@ export default function(startTime = 30) {
   const [running, setRunning] = useState(false);
 
   useEffect(() => {
-    if (running && timeRemaining > 0) {
+    if (running && timeRemaining >= 0.1) {
       setTimeout(() => setTime(prev => (prev - 0.1).toFixed(1)), 100);
-    } else if (timeRemaining < 0.1) {
+    } else if (running && timeRemaining < 0.1) {
       setRunning(false);
     }
   }, [timeRemaining, running]);
