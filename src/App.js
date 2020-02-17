@@ -4,7 +4,7 @@ import "./App.css";
 import Header from "./components/Header";
 import Game from "./pages/Game";
 import { Switch, Route } from "react-router-dom";
-import HighScore from "./pages/HighScore";
+import HighScores from "./pages/HighScores";
 
 function App() {
   return (
@@ -16,7 +16,7 @@ function App() {
           <Game />
         </Route>
         <Route path="/scores">
-          <HighScore />
+          <HighScores />
         </Route>
       </Switch>
     </div>
