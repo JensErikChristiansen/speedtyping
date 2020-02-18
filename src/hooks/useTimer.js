@@ -1,13 +1,12 @@
 import { useState, useEffect } from "react";
 
 export default function(startTime = 30) {
-  const START_TIME = startTime.toFixed(1);
-  const [timeRemaining, setTime] = useState(START_TIME);
+  const [timeRemaining, setTime] = useState(startTime);
   const [running, setRunning] = useState(false);
 
   useEffect(() => {
-    if (running && timeRemaining >= 0.1) {
-      setTimeout(() => setTime(prev => (prev - 0.1).toFixed(1)), 100);
+    if (running && timeRemaining !== 0) {
+      setTimeout(() => setTime(prev => (prev * 10 - 1) / 10), 100);
     } else if (running && timeRemaining < 0.1) {
       setRunning(false);
     }
@@ -16,7 +15,7 @@ export default function(startTime = 30) {
   return { running, timeRemaining, startTimer, stopTimer };
 
   function startTimer() {
-    setTime(START_TIME);
+    setTime(startTime);
     setRunning(true);
   }
 
