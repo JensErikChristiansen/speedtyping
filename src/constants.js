@@ -1,0 +1,7 @@
+const LOCAL_STORAGE = {
+  APP_NAME: "SpeedTyping"
+};
+
+LOCAL_STORAGE.HIGH_SCORES = `${LOCAL_STORAGE.APP_NAME}.highScores`;
+
+export { LOCAL_STORAGE };
