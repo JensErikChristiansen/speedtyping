@@ -1,3 +1,13 @@
+/**
+ @module
+*/
+
+/**
+ * Calculate  the number of words in the given sentence.
+ * @function calculateWordCount
+ * @param {string} text
+ * @returns {Action}
+ */
 export function calculateWordCount(text) {
   return {
     type: "SET_WORD_COUNT",
