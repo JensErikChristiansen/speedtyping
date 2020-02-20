@@ -1,12 +1,15 @@
 import React, { useEffect } from "react";
+import { calculateWordCount } from "../redux/wordCount";
+import { connect } from "react-redux";
 
-export default function({ running, text, wordCount, setWordCount }) {
+function WordCount({ running, text, wordCount, calculateWordCount }) {
   useEffect(() => {
     if (!running) {
-      const wordCount = text !== "" ? text.trim().split(" ").length : 0;
-      setWordCount(wordCount);
+      calculateWordCount(text);
     }
-  }, [running, text, wordCount, setWordCount]);
+  }, [running, text, wordCount, calculateWordCount]);
 
   return <h2>Word Count: {!running && wordCount}</h2>;
 }
+
+export default connect(state => state, { calculateWordCount })(WordCount);

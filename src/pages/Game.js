@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useEffect } from "react";
 import TypingArea from "../components/TypingArea";
 import useTimer from "../hooks/useTimer";
 import TimerButtons from "../components/TimerButtons";
@@ -6,12 +6,12 @@ import WordCount from "../components/WordCount";
 import TimeRemaining from "../components/TimeRemaining";
 import { LOCAL_STORAGE } from "../constants";
 import createLocalStorage from "../util/localStorage";
+import { resetGame } from "../redux";
+import { connect } from "react-redux";
 
 const { HIGH_SCORES } = LOCAL_STORAGE;
 
-export default function() {
-  const [text, setText] = useState("");
-  const [wordCount, setWordCount] = useState(0);
+function Game({ text, wordCount, resetGame }) {
   const { running, timeRemaining, startTimer, stopTimer, reset } = useTimer(2);
   const storage = createLocalStorage(HIGH_SCORES, []);
 
@@ -23,15 +23,10 @@ export default function() {
 
   return (
     <>
-      <TypingArea running={running} text={text} setText={setText} />
+      <TypingArea running={running} />
       <TimerButtons toggleTimer={toggleTimer} running={running} reset={reset} />
       <TimeRemaining timeRemaining={timeRemaining} />
-      <WordCount
-        running={running}
-        text={text}
-        wordCount={wordCount}
-        setWordCount={setWordCount}
-      />
+      <WordCount running={running} />
     </>
   );
 
@@ -44,8 +39,11 @@ export default function() {
   }
 
   function startGame() {
-    setWordCount(0);
-    setText("");
+    resetGame();
     startTimer();
   }
 }
+
+export default connect(state => state, {
+  resetGame
+})(Game);

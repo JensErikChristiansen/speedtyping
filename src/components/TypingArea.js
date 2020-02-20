@@ -1,7 +1,9 @@
 import React from "react";
 import "./TypingArea.css";
+import { setText } from "../redux/text";
+import { connect } from "react-redux";
 
-export default function({ running, text, setText }) {
+function TypingArea({ running, text, setText }) {
   return (
     <textarea
       disabled={!running}
@@ -15,3 +17,5 @@ export default function({ running, text, setText }) {
     setText(e.target.value);
   }
 }
+
+export default connect(state => state, { setText })(TypingArea);
